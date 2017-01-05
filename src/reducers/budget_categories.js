@@ -3,7 +3,7 @@ import { RETRIEVE_BUDGET_CATS_SUCCESS, CREATE_BUDGET_CAT } from '../actions/budg
 const budgetCatReducer = (state = {}, action) => {
   switch(action.type) {
     case RETRIEVE_BUDGET_CATS_SUCCESS:
-      return Object.assign(state, action.budget_categories);
+      return Object.assign({}, state, action.budget_categories);
     default:
       return state
   }
