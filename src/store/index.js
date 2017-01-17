@@ -14,7 +14,8 @@ export default function configure(initialState) {
     : createStore
 
   const createStoreWithMiddleware = applyMiddleware(
-    sagaMiddleware
+    sagaMiddleware,
+    logger
   )(create)
 
   const store = createStoreWithMiddleware(rootReducer, initialState)

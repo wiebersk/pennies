@@ -3,6 +3,7 @@ import { Select } from 'antd';
 const Option = Select.Option;
 import _ from 'lodash';
 import {connect} from 'react-redux';
+import { UPDATE_CURRENT_BUDGET } from '../actions/preferences'
 
 const budgetOptGroup = budgets => {
   if (_.isEmpty(budgets)) {
@@ -18,7 +19,7 @@ const budgetOptGroup = budgets => {
 
 const BudgetPicker = (props) => {
   return (
-    <Select style={{ width: 120 }}>
+    <Select style={{ width: 200 }} dropdownMatchSelectWidth={false} onChange={props.onPickerChange} defaultValue={props.currentBudget}>
       {budgetOptGroup(props.budgets)}
     </Select>
   )
@@ -27,11 +28,20 @@ const BudgetPicker = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    budgets: state.budgets
+    budgets: state.budgets,
+    currentBudget: state.preferences.current_budget || ''
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPickerChange: (value, label) => {
+      dispatch({type: UPDATE_CURRENT_BUDGET, id: value})
+    }
   }
 }
 
 export default connect(
   mapStateToProps,
-  undefined
+  mapDispatchToProps
 )(BudgetPicker);
