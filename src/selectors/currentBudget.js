@@ -1,13 +1,24 @@
 import { createSelector } from 'reselect'
 import _ from 'lodash'
 
-const getCurrentBudget = (state) => state.preferences.current_budget || ''
+const currentBudget = (state) => state.preferences.current_budget || ''
 const getBudgets = (state) => state.budgets
 const getBudgetCats = (state) => state.budget_categories
 const getTransactions = (state) => state.transaction
 
+export const getCurrentBudget = createSelector(
+  [ currentBudget, getBudgets ],
+  ( currentBudget, budgets ) => {
+    if(currentBudget == undefined || currentBudget == '') {
+      return []
+    } else {
+      return budgets[currentBudget]
+    }
+  }
+)
+
 export const getCurrentBudgetCats = createSelector(
-  [ getCurrentBudget, getBudgets, getBudgetCats ],
+  [ currentBudget, getBudgets, getBudgetCats ],
   (currentBudget, budgets, budgetCats) => {
     if(currentBudget == undefined || currentBudget == '') {
       return []
