@@ -1,10 +1,10 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import { getCurrentTransactions } from '../selectors/currentBudget';
+import React from "react";
+import {connect} from "react-redux";
+import { getCurrentTransactions } from "../selectors/currentBudget";
 
 class TransactionList extends React.Component {
 
-  render() {
+  render () {
     return (
       <ul>
         {transactionListItems(this.props.currentTransactions)}
@@ -14,7 +14,7 @@ class TransactionList extends React.Component {
 };
 
 const transactionListItems = (transactions) => {
-  const transList = transactions.map(function(transaction) {
+  const transList = transactions.map((transaction) => {
                         return <li key={transaction._id}>{transaction.name} - {transaction.amount}</li>
                       });
   return transList

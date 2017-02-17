@@ -1,29 +1,29 @@
-import { Modal, Button } from 'antd';
-import TransactionForm from './TransactionForm';
-import React from 'react';
+import { Modal, Button } from "antd";
+import TransactionForm from "./TransactionForm";
+import React from "react";
 
 const TransactionModal = React.createClass({
-  getInitialState() {
+  getInitialState () {
     return { visible: false };
   },
-  showModal() {
+  showModal () {
     this.setState({
       visible: true,
     });
   },
-  handleOk() {
-    console.log('Clicked OK');
+  handleOk () {
+    console.log("Clicked OK");
     this.setState({
       visible: false,
     });
   },
-  handleCancel(e) {
+  handleCancel (e) {
     console.log(e);
     this.setState({
       visible: false,
     });
   },
-  render() {
+  render () {
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>Create Transaction</Button>

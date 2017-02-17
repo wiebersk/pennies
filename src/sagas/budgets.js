@@ -1,14 +1,14 @@
-import { call, put } from 'redux-saga/effects'
-import { takeEvery } from 'redux-saga'
-import { normalize } from 'normalizr';
-import { budgetsSchema, budgetSchema, transactionsSchema, budgetCategoriesSchema } from '../actions/schema.js';
-import { RETRIEVE_BUDGETS_REQUESTED, RETRIEVE_BUDGETS_SUCCESS, RETRIEVE_BUDGETS_FAIL, CREATE_BUDGET_REQUESTED, CREATE_BUDGET_SUCCESS, CREATE_BUDGET_FAIL, FETCH_BUDGET } from '../actions/budget.js'
-import { RETRIEVE_TRANSACTIONS_SUCCESS} from '../actions/transaction.js'
-import { RETRIEVE_BUDGET_CATS_SUCCESS} from '../actions/budget_category.js'
-import api from '../utils/Api.js'
+import { call, put } from "redux-saga/effects"
+import { takeEvery } from "redux-saga"
+import { normalize } from "normalizr";
+import { budgetsSchema, budgetSchema, transactionsSchema, budgetCategoriesSchema } from "../actions/schema.js";
+import { RETRIEVE_BUDGETS_REQUESTED, RETRIEVE_BUDGETS_SUCCESS, RETRIEVE_BUDGETS_FAIL, CREATE_BUDGET_REQUESTED, CREATE_BUDGET_SUCCESS, CREATE_BUDGET_FAIL, FETCH_BUDGET } from "../actions/budget.js"
+import { RETRIEVE_TRANSACTIONS_SUCCESS} from "../actions/transaction.js"
+import { RETRIEVE_BUDGET_CATS_SUCCESS} from "../actions/budget_category.js"
+import api from "../utils/Api.js"
 
 
-function* fetchBudgets(action) {
+function* fetchBudgets (action) {
    try {
       const budgets = yield call(api.getBudgets);
       const normal_res = normalize(budgets.data, budgetsSchema).entities
@@ -20,7 +20,7 @@ function* fetchBudgets(action) {
    }
 }
 
-function* createBudget(action) {
+function* createBudget (action) {
   try {
     const budget_res = yield call(api.createBudget, action.budget);
     const normal_res = normalize(budget_res.data.budget, budgetSchema);
@@ -30,7 +30,7 @@ function* createBudget(action) {
   }
 }
 
-function* budgetSaga() {
+function* budgetSaga () {
   yield [
     takeEvery(RETRIEVE_BUDGETS_REQUESTED, fetchBudgets),
     takeEvery(CREATE_BUDGET_REQUESTED, createBudget)

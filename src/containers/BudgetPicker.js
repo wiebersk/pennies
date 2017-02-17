@@ -1,9 +1,9 @@
-import React from 'react';
-import { Select } from 'antd';
+import React from "react";
+import { Select } from "antd";
 const Option = Select.Option;
-import _ from 'lodash';
-import {connect} from 'react-redux';
-import { UPDATE_CURRENT_BUDGET } from '../actions/preferences'
+import _ from "lodash";
+import {connect} from "react-redux";
+import { UPDATE_CURRENT_BUDGET } from "../actions/preferences"
 
 const budgetOptGroup = budgets => {
   if (_.isEmpty(budgets)) {
@@ -29,7 +29,7 @@ const BudgetPicker = (props) => {
 const mapStateToProps = (state) => {
   return {
     budgets: state.budgets,
-    currentBudget: state.preferences.current_budget || ''
+    currentBudget: state.preferences.current_budget || ""
   }
 }
 

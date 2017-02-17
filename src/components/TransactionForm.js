@@ -1,20 +1,20 @@
-import { Form, Input, Button, DatePicker, Select } from 'antd';
+import { Form, Input, Button, DatePicker, Select } from "antd";
 const FormItem = Form.Item;
 const Option = Select.Option;
-import React from 'react';
-import _ from 'lodash';
+import React from "react";
+import _ from "lodash";
 
 const TransactionForm = Form.create()(React.createClass({
-  handleSubmit(e) {
+  handleSubmit (e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        console.log("Received values of form: ", values);
       }
     });
   },
 
-  render() {
+  render () {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="transaction-form">

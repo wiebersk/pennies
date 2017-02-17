@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_BUDGET } from '../actions/preferences.js'
+import { UPDATE_CURRENT_BUDGET } from "../actions/preferences.js"
 
 const preferencesReducer = (state = {}, action) => {
   switch(action.type) {
