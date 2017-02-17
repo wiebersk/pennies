@@ -5,5 +5,27 @@
         "ecmaFeatures": {
             "jsx": true
         }
+    },
+    "plugins": [
+      'import'
+    ],
+    "rules": {
+        "prefer-const": 'error',
+        "no-new-object": 'error',
+        'no-array-constructor': 'error',
+        'quotes': 'error',
+        'template-curly-spacing': "error",
+        'func-style': ["error", "declaration", { "allowArrowFunctions": true }],
+        'no-param-reassign': "error",
+        'space-before-function-paren': "error",
+        'prefer-arrow-callback': "error",
+        'no-confusing-arrow': "error",
+        'no-dupe-class-members': "error",
+        'no-iterator': "error",
+        'import/first': 'error',
+        'import/prefer-default-export': 'error',
+        'import/no-mutable-exports': 'error',
+        'dot-notation': "error",
+        'no-plusplus': "error"
     }
 }

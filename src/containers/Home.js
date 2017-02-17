@@ -3,6 +3,7 @@ import { Button, Row, Col } from 'antd';
 import BudgetPicker from '../containers/BudgetPicker';
 import TransactionList from './TransactionList';
 import BudgetOverview from './BudgetOverview';
+import TransactionModal from '../components/TransactionModal';
 import {RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED} from '../actions/budget.js'
 import {connect} from 'react-redux';
 
@@ -12,6 +13,7 @@ class Home extends React.Component {
     return (
       <Row gutter={16}>
         <Col span={16}>
+          <TransactionModal />
           <BudgetPicker />
           <BudgetOverview />
         </Col>
