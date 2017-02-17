@@ -7,7 +7,8 @@
         }
     },
     "plugins": [
-      'import'
+      'import',
+      'react'
     ],
     "rules": {
         "prefer-const": 'error',

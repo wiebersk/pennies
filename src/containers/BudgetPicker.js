@@ -1,9 +1,10 @@
 import React from "react";
 import { Select } from "antd";
-const Option = Select.Option;
 import _ from "lodash";
 import {connect} from "react-redux";
 import { UPDATE_CURRENT_BUDGET } from "../actions/preferences"
+
+const Option = Select.Option;
 
 const budgetOptGroup = budgets => {
   if (_.isEmpty(budgets)) {

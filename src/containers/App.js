@@ -2,9 +2,10 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Button, Layout } from "antd";
-const { Content } = Layout;
 import {RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED} from "../actions/budget.js"
 import {connect} from "react-redux";
+
+const { Content } = Layout;
 
 class App extends React.Component {
   componentDidMount () {

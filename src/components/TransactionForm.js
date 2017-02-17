@@ -1,8 +1,9 @@
 import { Form, Input, Button, DatePicker, Select } from "antd";
-const FormItem = Form.Item;
-const Option = Select.Option;
 import React from "react";
 import _ from "lodash";
+
+const FormItem = Form.Item;
+const Option = Select.Option;
 
 const TransactionForm = Form.create()(React.createClass({
   handleSubmit (e) {
