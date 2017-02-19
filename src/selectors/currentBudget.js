@@ -1,45 +1,45 @@
-import { createSelector } from "reselect"
-import _ from "lodash"
+import { createSelector, } from "reselect";
+import _ from "lodash";
 
-const currentBudget = (state) => state.preferences.current_budget || ""
-const getBudgets = (state) => state.budgets
-const getBudgetCats = (state) => state.budget_categories
-const getTransactions = (state) => state.transaction
+const currentBudget = (state) => state.preferences.current_budget || "";
+const getBudgets = (state) => state.budgets;
+const getBudgetCats = (state) => state.budget_categories;
+const getTransactions = (state) => state.transaction;
 
 export const getCurrentBudget = createSelector(
-  [ currentBudget, getBudgets ],
-  ( currentBudget, budgets ) => {
-    if(currentBudget == undefined || currentBudget == "") {
-      return []
+  [currentBudget, getBudgets,],
+  (currentBudget, budgets) => {
+    if (currentBudget == undefined || currentBudget == "") {
+      return [];
     } else {
-      return budgets[currentBudget]
+      return budgets[currentBudget];
     }
   }
-)
+);
 
 export const getCurrentBudgetCats = createSelector(
-  [ currentBudget, getBudgets, getBudgetCats ],
+  [currentBudget, getBudgets, getBudgetCats,],
   (currentBudget, budgets, budgetCats) => {
-    if(currentBudget == undefined || currentBudget == "") {
-      return []
+    if (currentBudget == undefined || currentBudget == "") {
+      return [];
     } else {
-      const budgetCatIds = budgets[currentBudget].budgetCategories
-      const cats = _.filter(budgetCats, (o) => {
-      	return _.includes(budgetCatIds, o._id);
+      const budgetCatIds = budgets[currentBudget].budgetCategories;
+      const cats = _.filter(budgetCats, (budgetCat) => {
+      	return _.includes(budgetCatIds, budgetCat._id);
       });
       return cats;
     }
   }
-)
+);
 
 export const getCurrentTransactions = createSelector(
-  [ getCurrentBudgetCats, getTransactions ],
-  ( currentBudgetCats, transactions ) => {
+  [getCurrentBudgetCats, getTransactions,],
+  (currentBudgetCats, transactions) => {
     if (currentBudgetCats == []) {
-      return []
+      return [];
     } else {
       const transIds = _.flatten(_.map(currentBudgetCats, (category) => {
-      	return category.transactions
+      	return category.transactions;
       }));
 
       const matchedTrans = _.filter(transactions, (trans) => {
@@ -48,4 +48,4 @@ export const getCurrentTransactions = createSelector(
       return matchedTrans;
     }
   }
-)
+);

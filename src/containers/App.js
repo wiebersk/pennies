@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Button, Layout } from "antd";
-import {RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED} from "../actions/budget.js"
-import {connect} from "react-redux";
+import { Button, Layout, } from "antd";
+import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
+import { connect, } from "react-redux";
 
-const { Content } = Layout;
+const { Content, } = Layout;
 
 class App extends React.Component {
   componentDidMount () {
@@ -16,8 +16,8 @@ class App extends React.Component {
     return (
       <Layout>
         <Header />
-        <Content style={{ padding: "0 50px" }}>
-          <div style={{ background: "#fff", padding: 24, minHeight: 280, marginTop: 20 }}>
+        <Content style={{ padding: "0 50px", }}>
+          <div style={{ background: "#fff", padding: 24, minHeight: 280, marginTop: 20, }}>
             {this.props.children}
           </div>
         </Content>
@@ -30,10 +30,10 @@ class App extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadBudgets: () => {
-      dispatch({type: RETRIEVE_BUDGETS_REQUESTED})
-    }
-  }
-}
+      dispatch({ type: RETRIEVE_BUDGETS_REQUESTED, });
+    },
+  };
+};
 
 
 export default connect(

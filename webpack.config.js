@@ -1,6 +1,6 @@
-var rucksack = require("rucksack-css")
-var webpack = require("webpack")
-var path = require("path")
+var rucksack = require("rucksack-css");
+var webpack = require("webpack");
+var path = require("path");
 
 module.exports = {
   context: path.join(__dirname, "./src"),
@@ -13,8 +13,8 @@ module.exports = {
       "react-redux",
       "react-router",
       "react-router-redux",
-      "redux"
-    ]
+      "redux",
+    ],
   },
   output: {
     path: path.join(__dirname, "./static"),
@@ -24,7 +24,7 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        loader: "file?name=[name].[ext]"
+        loader: "file?name=[name].[ext]",
       },
       {
         test: /\.css$/,
@@ -32,39 +32,39 @@ module.exports = {
         loaders: [
           "style-loader",
           "css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]",
-          "postcss-loader"
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.css$/,
         exclude: /src/,
-        loader: "style!css"
+        loader: "style!css",
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
-          "babel-loader"
-        ]
+          "babel-loader",
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"]
+    extensions: ["", ".js", ".jsx",],
   },
   postcss: [
     rucksack({
-      autoprefixer: true
-    })
+      autoprefixer: true,
+    }),
   ],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development") }
-    })
+      "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development"), },
+    }),
   ],
   devServer: {
     contentBase: "./src",
-    hot: true
-  }
-}
+    hot: true,
+  },
+};

@@ -1,5 +1,7 @@
-import logger from "./logger"
+import logger from "./logger";
 
-export default {
-  logger
-}
+const middlewares = {
+  logger,
+};
+
+export default middlewares;

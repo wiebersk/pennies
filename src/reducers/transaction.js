@@ -1,12 +1,12 @@
-import { RETRIEVE_TRANSACTIONS_SUCCESS } from "../actions/transaction.js"
+import { RETRIEVE_TRANSACTIONS_SUCCESS, } from "../actions/transaction.js";
 
 const transactionReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case RETRIEVE_TRANSACTIONS_SUCCESS:
       return Object.assign({}, state, action.transactions);
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default transactionReducer;

@@ -1,14 +1,14 @@
 import React from "react";
-import {connect} from "react-redux";
-import { getCurrentBudgetCats } from "../selectors/currentBudget";
-import { Table } from "antd";
+import { connect, } from "react-redux";
+import { getCurrentBudgetCats, } from "../selectors/currentBudget";
+import { Table, } from "antd";
 import _ from "lodash";
 
 class BudgetOverview extends React.Component {
 
   getDataSource () {
     return _.map(this.props.currentBudgetCats, (budgetCat) => {
-    	return {name: budgetCat.name, expense: budgetCat.expense, amount: budgetCat.amount, actual: budgetCat.transactionSummary}
+    	return { name: budgetCat.name, expense: budgetCat.expense, amount: budgetCat.amount, actual: budgetCat.transactionSummary, };
     });
   }
 
@@ -25,7 +25,7 @@ class BudgetOverview extends React.Component {
       title: "Actual Amount",
       dataIndex: "actual",
       key: "actual",
-    }];
+    },];
   }
 
   render () {
@@ -37,9 +37,9 @@ class BudgetOverview extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentBudgetCats: getCurrentBudgetCats(state)
-  }
-}
+    currentBudgetCats: getCurrentBudgetCats(state),
+  };
+};
 
 export default connect(
   mapStateToProps,

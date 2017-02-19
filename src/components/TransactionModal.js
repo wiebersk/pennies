@@ -1,10 +1,10 @@
-import { Modal, Button } from "antd";
+import { Modal, Button, } from "antd";
 import TransactionForm from "./TransactionForm";
 import React from "react";
 
 const TransactionModal = React.createClass({
   getInitialState () {
-    return { visible: false };
+    return { visible: false, };
   },
   showModal () {
     this.setState({
@@ -17,8 +17,8 @@ const TransactionModal = React.createClass({
       visible: false,
     });
   },
-  handleCancel (e) {
-    console.log(e);
+  handleCancel (ev) {
+    console.log(ev);
     this.setState({
       visible: false,
     });

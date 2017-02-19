@@ -1,46 +1,45 @@
 import React from "react";
-import { Select } from "antd";
+import { Select, } from "antd";
 import _ from "lodash";
-import {connect} from "react-redux";
-import { UPDATE_CURRENT_BUDGET } from "../actions/preferences"
-
+import { connect, } from "react-redux";
+import UPDATE_CURRENT_BUDGET from "../actions/preferences";
 const Option = Select.Option;
 
 const budgetOptGroup = budgets => {
   if (_.isEmpty(budgets)) {
-      return undefined
+      return undefined;
   } else {
-    const options = []
+    const options = [];
     _.mapKeys(budgets, (budget, id) => {
       options.push(<Option value={id} key={id}>{budget.name}</Option>);
     });
-    return options
+    return options;
   }
-}
+};
 
 const BudgetPicker = (props) => {
   return (
-    <Select style={{ width: 200 }} dropdownMatchSelectWidth={false} onChange={props.onPickerChange} defaultValue={props.currentBudget}>
+    <Select style={{ width: 200, }} dropdownMatchSelectWidth={false} onChange={props.onPickerChange} defaultValue={props.currentBudget}>
       {budgetOptGroup(props.budgets)}
     </Select>
-  )
-}
+  );
+};
 
 
 const mapStateToProps = (state) => {
   return {
     budgets: state.budgets,
-    currentBudget: state.preferences.current_budget || ""
-  }
-}
+    currentBudget: state.preferences.current_budget || "",
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onPickerChange: (value, label) => {
-      dispatch({type: UPDATE_CURRENT_BUDGET, id: value})
-    }
-  }
-}
+      dispatch({ type: UPDATE_CURRENT_BUDGET, id: value, });
+    },
+  };
+};
 
 export default connect(
   mapStateToProps,

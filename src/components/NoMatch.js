@@ -5,7 +5,7 @@ const NoMatch = (props) => {
     <div>
       <h2>Page Not Found :(</h2>
     </div>
-  )
-}
+  );
+};
 
-export default NoMatch
+export default NoMatch;
