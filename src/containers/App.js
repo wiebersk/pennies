@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Button, Layout, } from "antd";
+import { Button, Layout, LocaleProvider, } from "antd";
+import enUS from "antd/lib/locale-provider/en_US";
 import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
 import { connect, } from "react-redux";
 
@@ -14,15 +15,17 @@ class App extends React.Component {
 
   render () {
     return (
-      <Layout>
-        <Header />
-        <Content style={{ padding: "0 50px", }}>
-          <div style={{ background: "#fff", padding: 24, minHeight: 280, marginTop: 20, }}>
-            {this.props.children}
-          </div>
-        </Content>
-        <Footer />
-      </Layout>
+      <LocaleProvider locale={enUS}>
+        <Layout>
+          <Header />
+          <Content style={{ padding: "0 50px", }}>
+            <div style={{ background: "#fff", padding: 24, minHeight: 280, marginTop: 20, }}>
+              {this.props.children}
+            </div>
+          </Content>
+          <Footer />
+        </Layout>
+      </LocaleProvider>
     );
   }
 };

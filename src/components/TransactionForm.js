@@ -1,46 +1,64 @@
-import { Form, Input, Button, DatePicker, Select, } from "antd";
+import { Form, Input, Button, DatePicker, Select, Modal, } from "antd";
 import React from "react";
 import _ from "lodash";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-const TransactionForm = Form.create()(React.createClass({
-  handleSubmit (ev) {
-    ev.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log("Received values of form: ", values);
-      }
+const catOptions = (cats) => {
+  let catList = [];
+  if (_.isEmpty(cats)) {
+    catList = "";
+  } else {
+    _.forEach(cats, (cat, id) => {
+      catList.push(<Option key={cat.name} value={cat.name}>{cat.name}</Option>);
     });
-  },
+  }
+  return catList;
+};
 
-  render () {
-    const { getFieldDecorator, } = this.props.form;
+const TransactionForm = Form.create()(
+  (props) => {
+    const { visible, onCancel, onCreate, form, budgetCats, } = props;
+    const { getFieldDecorator, } = form;
+
     return (
-      <Form onSubmit={this.handleSubmit} className="transaction-form">
-        <FormItem>
-          <DatePicker placeholder='Transaction Date' />
-        </FormItem>
-        <FormItem>
-          <Select placeholder="Select a budget category">
-            <Option value="test">Test Category</Option>
-          </Select>
-        </FormItem>
-        <FormItem>
-          <Input placeholder="Description" />
-        </FormItem>
-        <FormItem>
-          <Input placeholder="amount" />
-        </FormItem>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Submit
-        </Button>
-      </Form>
-    );
-  },
-
-})
+      <Modal title="New Transaction" visible={visible} onOk={onCreate} onCancel={onCancel}>
+        <Form className="transaction-form">
+          <FormItem>
+            { getFieldDecorator("transaction_date",{ rules: [
+                { type: "object",
+                  required: true, message: "Please select a transaction date!",
+                },
+              ], }
+            )(<DatePicker placeholder='Transaction Date' />)}
+          </FormItem>
+          <FormItem>
+            { getFieldDecorator("budget_category", { rules: [
+              { required: true, message: "Please select a budget category", },
+            ], })(
+              <Select placeholder="Select a budget category">
+                {catOptions(budgetCats)}
+              </Select>
+            )}
+          </FormItem>
+          <FormItem>
+            { getFieldDecorator("description", {})(
+              <Input placeholder="Description" />
+            )}
+          </FormItem>
+          <FormItem>
+            { getFieldDecorator("transaction_amount", { rules: [
+              { required: true, message: "Please enter a transaction amount", },
+            ], })(
+              <Input placeholder="amount" />
+            )
+          }
+          </FormItem>
+        </Form>
+      </Modal>
+  );}
 );
+
 
 export default TransactionForm;

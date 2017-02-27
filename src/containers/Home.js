@@ -3,7 +3,7 @@ import { Button, Row, Col, } from "antd";
 import BudgetPicker from "../containers/BudgetPicker";
 import TransactionList from "./TransactionList";
 import BudgetOverview from "./BudgetOverview";
-import TransactionModal from "../components/TransactionModal";
+import TransactionModal from "./TransactionModal";
 import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
 import { connect, } from "react-redux";
 

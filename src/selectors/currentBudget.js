@@ -17,6 +17,17 @@ export const getCurrentBudget = createSelector(
   }
 );
 
+export const getUniqueBudgetCats = createSelector(
+  [getBudgetCats,],
+  (budgetCats) => {
+    const uniqueCats = [];
+    _.each(budgetCats, (cat) =>{
+      uniqueCats.push({ id: cat._id, name: cat.name, });
+    });
+    return _.uniqBy(uniqueCats, "name");
+  }
+);
+
 export const getCurrentBudgetCats = createSelector(
   [currentBudget, getBudgets, getBudgetCats,],
   (currentBudget, budgets, budgetCats) => {
@@ -32,7 +43,7 @@ export const getCurrentBudgetCats = createSelector(
   }
 );
 
-export const getCurrentTransactions = createSelector(
+export const getRecentTransactions = createSelector(
   [getCurrentBudgetCats, getTransactions,],
   (currentBudgetCats, transactions) => {
     if (currentBudgetCats == []) {

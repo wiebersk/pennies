@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, } from "react-redux";
-import { getCurrentTransactions, } from "../selectors/currentBudget";
+import { getRecentTransactions, } from "../selectors/currentBudget";
 
 class TransactionList extends React.Component {
 
@@ -22,7 +22,7 @@ const transactionListItems = (transactions) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentTransactions: getCurrentTransactions(state),
+    currentTransactions: getRecentTransactions(state),
     currentBudget: state.preferences.current_budget,
   };
 };
