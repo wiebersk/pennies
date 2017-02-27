@@ -4,6 +4,7 @@ import BudgetPicker from "../containers/BudgetPicker";
 import TransactionList from "./TransactionList";
 import BudgetOverview from "./BudgetOverview";
 import TransactionModal from "./TransactionModal";
+import BudgetModal from "./BudgetModal";
 import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
 import { connect, } from "react-redux";
 
@@ -14,6 +15,7 @@ class Home extends React.Component {
       <Row gutter={16}>
         <Col span={16}>
           <TransactionModal />
+          <BudgetModal />
           <BudgetPicker />
           <BudgetOverview />
         </Col>
