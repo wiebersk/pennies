@@ -15,12 +15,12 @@ class BudgetCategoryPicker extends React.Component {
     };
   }
 
-  handleChange (e) {
-    this.setState({ budget_category: e, });
+  handleChange (val) {
+    this.setState({ budget_category: val, });
     // Should provide an event to pass value to Form.
     const onChange = this.props.onChange;
     if (onChange) {
-      onChange(e);
+      onChange(val);
     }
   }
 

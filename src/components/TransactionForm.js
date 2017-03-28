@@ -2,6 +2,7 @@ import { Form, Input, Button, DatePicker, Select, Modal, } from "antd";
 import React from "react";
 import _ from "lodash";
 import BudgetCategoryPicker from "components/BudgetCategoryPicker";
+import AmountInput from "components/AmountInput";
 
 const FormItem = Form.Item;
 
@@ -37,7 +38,7 @@ const TransactionForm = Form.create()(
             { getFieldDecorator("transaction_amount", { rules: [
               { required: true, message: "Please enter a transaction amount", },
             ], })(
-              <Input placeholder="amount" />
+              <AmountInput />
             )
           }
           </FormItem>

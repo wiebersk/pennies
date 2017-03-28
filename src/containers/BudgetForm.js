@@ -1,5 +1,6 @@
 import { Form, Input, Icon, InputNumber, Button, DatePicker, AutoComplete, Modal, } from "antd";
 import BudgetCategoryPicker from "components/BudgetCategoryPicker";
+import AmountInput from "components/AmountInput";
 import React from "react";
 import _ from "lodash";
 
@@ -21,14 +22,8 @@ class BudgetForm extends React.Component {
           <FormItem
             required={false}
           >
-            {getFieldDecorator(`budget_categories${k}`, {
-              validateTrigger: ["onChange", "onBlur",],
-              rules: [{
-                type: "object",
-                required: true,
-                whitespace: true,
-                message: "Budget Category is requred",
-              },],
+            {getFieldDecorator(`budget_categories${k}`,
+              { required: true, message: "Please select a budget category",
             })(
               <BudgetCategoryPicker />
             )}
@@ -37,7 +32,7 @@ class BudgetForm extends React.Component {
             {getFieldDecorator(`amounts${k}`, {
               initialValue: 100,
             })(
-              <InputNumber formatter={value => `$ ${value}`} />
+              <AmountInput />
             )}
           </FormItem>
         </div>
