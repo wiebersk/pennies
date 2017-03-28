@@ -1,5 +1,5 @@
-import budgetSaga from "./budgets.js";
-import transactionSaga from "./transactions.js";
+import budgetSaga from "sagas/budgets.js";
+import transactionSaga from "sagas/transactions.js";
 import { fork, } from "redux-saga/effects";
 
 export default function* rootSaga () {

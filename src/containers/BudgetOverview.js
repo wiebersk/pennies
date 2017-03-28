@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, } from "react-redux";
-import { getCurrentBudgetCats, } from "../selectors/currentBudget";
+import { getCurrentBudgetCats, } from "selectors/currentBudget";
 import { Table, } from "antd";
 import _ from "lodash";
 

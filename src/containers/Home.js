@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Row, Col, } from "antd";
-import BudgetPicker from "../containers/BudgetPicker";
-import TransactionList from "./TransactionList";
-import BudgetOverview from "./BudgetOverview";
-import TransactionModal from "./TransactionModal";
-import BudgetModal from "./BudgetModal";
-import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
+import BudgetPicker from "containers/BudgetPicker";
+import TransactionList from "containers/TransactionList";
+import BudgetOverview from "containers/BudgetOverview";
+import TransactionModal from "containers/TransactionModal";
+import BudgetModal from "containers/BudgetModal";
+import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "actions/budget.js";
 import { connect, } from "react-redux";
 
 class Home extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, } from "react-redux";
-import { getRecentTransactions, } from "../selectors/currentBudget";
+import { getRecentTransactions, } from "selectors/currentBudget";
 
 class TransactionList extends React.Component {
 

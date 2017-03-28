@@ -1,21 +1,9 @@
 import { Form, Input, Button, DatePicker, Select, Modal, } from "antd";
 import React from "react";
 import _ from "lodash";
+import BudgetCategoryPicker from "components/BudgetCategoryPicker";
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-
-const catOptions = (cats) => {
-  let catList = [];
-  if (_.isEmpty(cats)) {
-    catList = "";
-  } else {
-    _.forEach(cats, (cat, id) => {
-      catList.push(<Option key={cat.name} value={cat.name}>{cat.name}</Option>);
-    });
-  }
-  return catList;
-};
 
 const TransactionForm = Form.create()(
   (props) => {
@@ -37,9 +25,7 @@ const TransactionForm = Form.create()(
             { getFieldDecorator("budget_category", { rules: [
               { required: true, message: "Please select a budget category", },
             ], })(
-              <Select placeholder="Select a budget category">
-                {catOptions(budgetCats)}
-              </Select>
+              <BudgetCategoryPicker />
             )}
           </FormItem>
           <FormItem>

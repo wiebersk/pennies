@@ -1,9 +1,8 @@
 import { Button, } from "antd";
-import BudgetStepsForm from "./BudgetStepsForm";
+import BudgetForm from "containers/BudgetForm";
 import React from "react";
-import { CREATE_BUDGET_REQUESTED, } from "../actions/transaction.js";
+import { CREATE_BUDGET_REQUESTED, } from "actions/budget.js";
 import { connect, } from "react-redux";
-import { getUniqueBudgetCats, } from "../selectors/currentBudget";
 
 
 const BudgetModal = React.createClass({
@@ -23,10 +22,20 @@ const BudgetModal = React.createClass({
       }
 
       console.log("Received values of form: ", values);
-      this.props.dispatch({ type: CREATE_BUDGET_REQUESTED, payload: {
-
+      const budgetCategories = values.budget_categories.map((val) => {
+                              	var rObj = {};
+                              	rObj.amount = values["amounts" + val];
+                              	rObj.name = values["budget_categories" + val];
+                              	return rObj;
+                              });
+      this.props.dispatch({ type: CREATE_BUDGET_REQUESTED, budget: {
+        name: values.name,
+        description: values.description,
+        budgetDate: values.budget_start_date.toDate(),
+        budgetEndDate: values.budget_end_date.toDate(),
+        budgetCategories: budgetCategories,
       }, });
-      // form.resetFields();
+      form.resetFields();
       this.setState({ visible: false, });
     });
   },
@@ -43,20 +52,10 @@ const BudgetModal = React.createClass({
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>Create New Budget</Button>
-          <BudgetStepsForm budgetCats={this.props.budgetCats} visible={this.state.visible} onCreate={this.handleOk} onCancel={this.handleCancel} ref={this.saveFormRef} />
+          <BudgetForm visible={this.state.visible} onCreate={this.handleOk} onCancel={this.handleCancel} ref={this.saveFormRef} />
       </div>
     );
   },
 });
 
-
-const mapStateToProps = (state) => {
-  return {
-    budgetCats: getUniqueBudgetCats(state),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  undefined
-)(BudgetModal);
+export default BudgetModal;

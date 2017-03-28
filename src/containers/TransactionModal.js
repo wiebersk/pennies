@@ -1,9 +1,9 @@
 import { Button, } from "antd";
-import TransactionForm from "../components/TransactionForm";
+import TransactionForm from "components/TransactionForm";
 import React from "react";
-import { CREATE_TRANSACTION_REQUESTED, } from "../actions/transaction.js";
+import { CREATE_TRANSACTION_REQUESTED, } from "actions/transaction.js";
 import { connect, } from "react-redux";
-import { getUniqueBudgetCats, } from "../selectors/currentBudget";
+import { getUniqueBudgetCats, } from "selectors/currentBudget";
 
 const TransactionModal = React.createClass({
   getInitialState () {
@@ -18,6 +18,7 @@ const TransactionModal = React.createClass({
     const form = this.form;
     form.validateFields((err, values) => {
       if (err) {
+        console.log(values);
         return;
       }
 

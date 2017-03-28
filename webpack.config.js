@@ -50,6 +50,18 @@ module.exports = {
     ],
   },
   resolve: {
+    root: path.resolve(__dirname, "src"),
+    alias: {
+      actions: "actions",
+      components: "components",
+      containers: "containers",
+      middleware: "middleware",
+      reducers: "reducers",
+      sagas: "sagas",
+      selectors: "selectors",
+      store: "store",
+      utils: "utils",
+    },
     extensions: ["", ".js", ".jsx",],
   },
   postcss: [

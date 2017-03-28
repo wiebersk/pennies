@@ -2,7 +2,7 @@ import React from "react";
 import { Select, } from "antd";
 import _ from "lodash";
 import { connect, } from "react-redux";
-import UPDATE_CURRENT_BUDGET from "../actions/preferences";
+import UPDATE_CURRENT_BUDGET from "actions/preferences";
 const Option = Select.Option;
 
 const budgetOptGroup = budgets => {

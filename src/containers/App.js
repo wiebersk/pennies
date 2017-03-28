@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "components/Header";
+import Footer from "components/Footer";
 import { Button, Layout, LocaleProvider, } from "antd";
 import enUS from "antd/lib/locale-provider/en_US";
-import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "../actions/budget.js";
+import { RETRIEVE_BUDGETS_REQUESTED, CREATE_BUDGET_REQUESTED, } from "actions/budget.js";
 import { connect, } from "react-redux";
 
 const { Content, } = Layout;

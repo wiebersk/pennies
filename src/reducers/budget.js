@@ -1,4 +1,4 @@
-import { RETRIEVE_BUDGETS_SUCCESS, CREATE_BUDGET_SUCCESS, } from "../actions/budget.js";
+import { RETRIEVE_BUDGETS_SUCCESS, CREATE_BUDGET_SUCCESS, } from "actions/budget.js";
 
 const budgetReducer = (state = {}, action) => {
   switch (action.type) {
