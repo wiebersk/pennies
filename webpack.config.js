@@ -1,12 +1,12 @@
 var rucksack = require("rucksack-css");
 var webpack = require("webpack");
 var path = require("path");
+require("dotenv").config();
 
 module.exports = {
   context: path.join(__dirname, "./src"),
   entry: {
     jsx: "./index.js",
-    html: "./index.html",
     vendor: [
       "react",
       "react-dom",
@@ -17,7 +17,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, "./static"),
+    path: path.join(__dirname, "/public/"),
     filename: "bundle.js",
   },
   module: {
@@ -72,7 +72,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development"), },
+      "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV || "development"), API_URL: JSON.stringify(process.env.API_URL)},
     }),
   ],
   devServer: {
