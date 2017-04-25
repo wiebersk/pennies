@@ -52,4 +52,5 @@ jspm_packages
 
 
 #customs
-.env
+.envpublic/bundle.js
+public/vendor.bundle.js
