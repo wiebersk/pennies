@@ -45,7 +45,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "postinstall", "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.1.0",
