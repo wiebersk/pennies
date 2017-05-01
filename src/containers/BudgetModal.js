@@ -28,13 +28,15 @@ const BudgetModal = React.createClass({
                               	rObj.name = values["budget_categories" + val];
                               	return rObj;
                               });
-      this.props.dispatch({ type: CREATE_BUDGET_REQUESTED, budget: {
+      const budget = {
         name: values.name,
         description: values.description,
         budgetDate: values.budget_start_date.toDate(),
         budgetEndDate: values.budget_end_date.toDate(),
         budgetCategories: budgetCategories,
-      }, });
+      }, }
+      this.props.onBudgetCreateClick( budget );
+
       form.resetFields();
       this.setState({ visible: false, });
     });
@@ -58,4 +60,15 @@ const BudgetModal = React.createClass({
   },
 });
 
-export default BudgetModal;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBudgetCreateClick: (budget) => {
+      dispatch({ type: CREATE_BUDGET_REQUESTED, budget: budget);
+    },
+  };
+};
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(BudgetModal);
