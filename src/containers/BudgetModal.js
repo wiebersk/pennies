@@ -34,7 +34,7 @@ const BudgetModal = React.createClass({
         budgetDate: values.budget_start_date.toDate(),
         budgetEndDate: values.budget_end_date.toDate(),
         budgetCategories: budgetCategories,
-      }, }
+      }
       this.props.onBudgetCreateClick( budget );
 
       form.resetFields();
@@ -62,9 +62,9 @@ const BudgetModal = React.createClass({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onBudgetCreateClick: (budget) => {
-      dispatch({ type: CREATE_BUDGET_REQUESTED, budget: budget);
-    },
+    onBudgetCreateClick: (budgets) => {
+      dispatch({ type: CREATE_BUDGET_REQUESTED, budget: budgets });
+    }
   };
 };
 
