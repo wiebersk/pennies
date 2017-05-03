@@ -22,6 +22,7 @@ function* fetchBudgets (action) {
 
 function* createBudget (action) {
   try {
+    console.log('Budget Request', action.budget)
     const budgetRes = yield call(api.createBudget, action.budget);
     console.log("Budget Response", budgetRes);
     const normalRes = normalize(budgetRes.data.budget, budgetSchema);
