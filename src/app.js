@@ -2,8 +2,11 @@ const Server = require('./server.js')
 require("dotenv").config()
 const port = (process.env.PORT || 8080)
 const app = Server.app()
+const mongoose = require('mongoose')
 
-console.log(process.env.NODE_ENV);
+
+mongoose.connect(process.env.MONGODB_URL);
+
 if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('webpack-dev-middleware')
@@ -15,7 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
-  }))
+ }))
 }
 
 app.listen(port)
