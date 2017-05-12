@@ -1,6 +1,7 @@
 import React from "react";
 import { connect, } from "react-redux";
 import { getRecentTransactions, } from "selectors/currentBudget";
+import DollarDisplay from "components/DollarDisplay";
 
 class TransactionList extends React.Component {
 
@@ -15,7 +16,7 @@ class TransactionList extends React.Component {
 
 const transactionListItems = (transactions) => {
   const transList = transactions.map((transaction) => {
-                        return <li key={transaction._id}>{transaction.name} - {transaction.amount}</li>;
+                        return <li key={transaction._id}>{transaction.name} - <DollarDisplay amount={transaction.amount} /></li>;
                       });
   return transList;
 };
