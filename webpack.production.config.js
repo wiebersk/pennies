@@ -2,22 +2,21 @@ var rucksack = require("rucksack-css");
 var webpack = require("webpack");
 var path = require("path");
 require("dotenv").config();
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var StatsPlugin = require('stats-webpack-plugin');
 
 module.exports = {
-  devtool: '#source-map',
+  devtool: 'eval-source-map',
   context: path.join(__dirname, "./src"),
   entry: {
-    bundle: ["./index.js",
-      'webpack-hot-middleware/client?reload=true'
-    ],
+    bundle: ["./index.js"],
     vendor: [
       "react",
       "react-dom",
       "react-redux",
       "react-router",
       "react-router-redux",
-      "redux",
-      'webpack-hot-middleware/client?reload=true'
+      "redux"
     ]
   },
   module: {
@@ -67,10 +66,22 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+        screw_ie8: true
+      }
+    }),
+    new StatsPlugin('webpack.stats.json', {
+      source: false,
+      modules: false
+    }),
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify("development"), API_URL: JSON.stringify(process.env.API_URL) },
+      'process.env.NODE_ENV': JSON.stringify('development'), API_URL: JSON.stringify(process.env.API_URL)
     })
+  ],
+  postcss: [
+    require('autoprefixer')
   ]
 };

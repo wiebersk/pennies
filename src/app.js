@@ -1,25 +1,39 @@
 const Server = require('./server.js')
 require("dotenv").config()
-const port = (process.env.PORT || 8080)
 const app = Server.app()
+const path = require('path')
 const mongoose = require('mongoose')
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('../webpack.config.js');
 
 
 mongoose.connect(process.env.MONGODB_URL);
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 8080 : process.env.PORT;
+const indexPath = path.join(__dirname, '/../public/index.html')
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack')
-  const config = require('../webpack.config.js')
-  const compiler = webpack(config)
+if (isDeveloping) {
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    contentBase: './',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    }
+  });
 
-  app.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true, publicPath: config.output.publicPath
-  }));
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
 
-  // Step 3: Attach the hot middleware to the compiler & the server
-  app.use(require("webpack-hot-middleware")(compiler, {
-    log: console.log,
-  }));
+} else {
+  console.log('production');
 }
 
 app.listen(port)

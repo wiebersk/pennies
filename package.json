@@ -20,6 +20,7 @@
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
     "cors": "^2.8.3",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.26.0",
     "date-fns": "^1.14.1",
     "dotenv": "^4.0.0",
@@ -44,6 +45,7 @@
     "redux-saga": "^0.13.0",
     "request": "^2.81.0",
     "reselect": "^2.5.4",
+    "rimraf": "^2.6.1",
     "rucksack-css": "^0.8.6",
     "style-loader": "^0.13.1",
     "webpack": "1.14",
@@ -53,10 +55,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
-    "build": "webpack --config ./webpack.config.js --progress --colors",
-    "start": "node ./src/app.js",
-    "postinstall": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
+    "start": "node ./src/app",
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "postinstall": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors"
   },
   "devDependencies": {}
 }
