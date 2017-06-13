@@ -9,7 +9,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../webpack.config.js');
 
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGO_URL);
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 8080 : process.env.PORT;
 const indexPath = path.join(__dirname, '/../public/index.html')
