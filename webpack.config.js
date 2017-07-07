@@ -4,11 +4,11 @@ var path = require("path");
 require("dotenv").config();
 
 module.exports = {
-  devtool: '#source-map',
+  devtool: "#source-map",
   context: path.join(__dirname, "./src"),
   entry: {
     bundle: ["./index.js",
-      'webpack-hot-middleware/client?reload=true'
+      "webpack-hot-middleware/client?reload=true",
     ],
     vendor: [
       "react",
@@ -17,8 +17,8 @@ module.exports = {
       "react-router",
       "react-router-redux",
       "redux",
-      'webpack-hot-middleware/client?reload=true'
-    ]
+      "webpack-hot-middleware/client?reload=true",
+    ],
   },
   module: {
     loaders: [
@@ -43,12 +43,12 @@ module.exports = {
           "babel-loader",
         ],
       },
-    ]
+    ],
   },
   output: {
     path: path.join(__dirname, "./public"),
     publicPath: "/",
-    filename: '[name].js'
+    filename: "[name].js",
   },
   resolve: {
     root: path.resolve(__dirname, "src"),
@@ -70,7 +70,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify("development"), API_URL: JSON.stringify(process.env.API_URL) },
-    })
-  ]
+      "process.env": { NODE_ENV: JSON.stringify("development"), API_URL: JSON.stringify(process.env.API_URL), },
+    }),
+  ],
 };

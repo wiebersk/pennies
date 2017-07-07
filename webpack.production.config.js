@@ -2,22 +2,22 @@ var rucksack = require("rucksack-css");
 var webpack = require("webpack");
 var path = require("path");
 require("dotenv").config();
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var StatsPlugin = require('stats-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var StatsPlugin = require("stats-webpack-plugin");
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: "eval-source-map",
   context: path.join(__dirname, "./src"),
   entry: {
-    bundle: ["./index.js"],
+    bundle: ["./index.js",],
     vendor: [
       "react",
       "react-dom",
       "react-redux",
       "react-router",
       "react-router-redux",
-      "redux"
-    ]
+      "redux",
+    ],
   },
   module: {
     loaders: [
@@ -42,12 +42,12 @@ module.exports = {
           "babel-loader",
         ],
       },
-    ]
+    ],
   },
   output: {
     path: path.join(__dirname, "./public"),
     publicPath: "/",
-    filename: '[name].js'
+    filename: "[name].js",
   },
   resolve: {
     root: path.resolve(__dirname, "src"),
@@ -69,14 +69,14 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
-        screw_ie8: true
-      }
+        screw_ie8: true,
+      },
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'), API_URL: JSON.stringify(process.env.API_URL)
-    })
+      "process.env.NODE_ENV": JSON.stringify("development"), API_URL: JSON.stringify(process.env.API_URL),
+    }),
   ],
   postcss: [
-    require('autoprefixer')
-  ]
+    require("autoprefixer"),
+  ],
 };

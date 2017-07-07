@@ -14,8 +14,6 @@ class Home extends React.Component {
     return (
       <Row gutter={16}>
         <Col span={16}>
-          <TransactionModal />
-          <BudgetModal />
           <BudgetPicker />
           <BudgetOverview />
         </Col>
