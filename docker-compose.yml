@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  web:
+    build: https://registry.wiebe.rs/v2/pennies:latest
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+    labels:
+      - "traefik.backend=budget-app"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:budget.wiebe.rs"
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
