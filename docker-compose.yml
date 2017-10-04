@@ -2,7 +2,7 @@ version: "2"
 
 services:
   web:
-    build: https://registry.wiebe.rs/v2/pennies:latest
+    image: registry.wiebe.rs/v2/pennies:latest
     volumes:
       - ./:/app
     ports:
